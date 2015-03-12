@@ -30,6 +30,10 @@ class ApplicationController < ActionController::Base
     end
 
     def invalid_query
-      render json: { success: false, message: 'Error with authenticating user' }, status: 401
+      render json: { success: false, message: 'Invalid Query' }, status: 400
+    end
+
+    def render_object(object, status)
+      render json: object, success: true, status: status
     end
 end
