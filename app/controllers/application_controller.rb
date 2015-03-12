@@ -8,6 +8,9 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user_from_token!
   before_filter :authenticate_user!
 
+  rescue_from Exception, with: :generic_exception
+  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+
 
   def authenticate_user_from_token!
     user_email = request.headers["X-API-EMAIL"].presence
@@ -35,5 +38,17 @@ class ApplicationController < ActionController::Base
 
     def render_object(object, status)
       render json: object, success: true, status: status
+    end
+
+    def record_not_found(error)
+      respond_to do |format|
+        format.json { render :json => {:error => error.message}, :status => 404 }
+      end
+    end
+
+    def generic_exception(error)
+      respond_to do |format|
+        format.json { render :json => {:error => error.message}, :status => 500 }
+      end
     end
 end
