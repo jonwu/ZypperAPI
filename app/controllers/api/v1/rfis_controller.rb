@@ -10,12 +10,8 @@ class Api::V1::RfisController < ApplicationController
 
   def show
     @rfi = Rfi.find_by_id(params[:id])
-    if !@rfi.nil?
-      # USE RABL gem for custom API responses, e.g. want to show categories
-      render_object(@rfi, 200)
-    else
-      invalid_query
-    end
+    # USE RABL gem for custom API responses, e.g. want to show categories
+    render_object(@rfi, 200)
   end
 
   def create
@@ -27,24 +23,16 @@ class Api::V1::RfisController < ApplicationController
 
   def update
     @rfi = Rfi.find_by_id(params[:id])
-    if !@rfi.nil?
-      @rfi.update_attributes(:title => params[:title])
-      render_object(@rfi, 200)
-    else
-      invalid_query
-    end
+    @rfi.update_attributes(:title => params[:title])
+    render_object(@rfi, 200)
 
   end
 
   # Returns the next RFI in the list
   def destroy
     rfi = Rfi.find_by_id(params[:id])
-    if !rfi.nil?
-      Rfi.destroy(params[:id])
-      @rfis = current_user.rfis
-      render_object(@rfis.first, 200)
-    else
-      invalid_query
-    end
+    Rfi.destroy(params[:id])
+    @rfis = current_user.rfis
+    render_object(@rfis.first, 200)
   end
 end
