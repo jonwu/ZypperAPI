@@ -19,6 +19,17 @@ class ApplicationController < ActionController::Base
     # timing attacks.
     if user && Devise.secure_compare(user.authentication_token, user_auth_token)
       sign_in(user, store: false)
+    else
+      invalid_authentication
     end
   end
+
+  protected
+    def invalid_authentication
+      render json: { success: false, message: 'Error with authenticating user' }, status: 401
+    end
+
+    def invalid_query
+      render json: { success: false, message: 'Error with authenticating user' }, status: 401
+    end
 end

@@ -10,10 +10,14 @@ Rails.application.routes.draw do
         match '/sessions' => 'sessions#destroy', :via => :delete
       end
 
-      resources :users, only: [:create]
-      match '/users' => 'users#show', :via => :get
-      match '/users' => 'users#update', :via => :put
-      match '/users' => 'users#destroy', :via => :delete
+      # resources :users, only: [:create]
+      # match '/users' => 'users#show', :via => :get
+      # match '/users' => 'users#update', :via => :put
+      # match '/users' => 'users#destroy', :via => :delete
+
+      resources :rfis, except: [:new, :edit] do
+        resources :categories, shallow: true, except: [:new, :edit, :index]    
+      end
     end
 
   end

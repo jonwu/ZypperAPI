@@ -1,4 +1,5 @@
 class Rfi < ActiveRecord::Base
+  validates :title, presence: true
   has_many :categories, dependent: :destroy
   has_many :vendors, dependent: :destroy
   # has_many :collaborators, dependent: :destroy
