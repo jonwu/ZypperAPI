@@ -3,11 +3,14 @@ class Api::V1::QuestionsController < ApplicationController
   respond_to :json
 
   def index
-
+    category = Category.find_by_id!(params[:category_id])
+    @questions = category.questions
+    render_object(@questions, 200)
   end
 
   def show
-
+    @question = Question.find_by_id!(params[:id])
+    render_object(@question, 200)
   end
 
   def create
@@ -24,12 +27,15 @@ class Api::V1::QuestionsController < ApplicationController
 
   def destroy 
     question = Question.find_by_id!(params[:id])
-    Question.destroy(question.id)
-    render_json_delete
+    current_category = question.category
+    @next_question = Question.find_next_question_and_delete(current_category.questions, question.id)
+    render_object(@next_question, 200)
   end
 
   def update
-    get_current_question.update_attributes!(text: params[:question][:text])
+    @question = Question.find_by_id!(params[:id])
+    @question.update_attributes!(text: params[:text])
+    render_object(@question, 200)
   end
 
   def comment

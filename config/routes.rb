@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       # match '/users' => 'users#destroy', :via => :delete
 
       resources :rfis, except: [:new, :edit] do
-        resources :categories, shallow: true, except: [:new, :edit, :index] do
+        resources :categories, shallow: true, except: [:new, :edit] do
           resources :questions, except: [:new, :edit]
         end
       end

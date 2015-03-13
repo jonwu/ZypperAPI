@@ -25,9 +25,9 @@ class Category < ActiveRecord::Base
     # render no category page
     ret = nil
     if categories.count > 1
-      ret = Category.where("id < " + current_category_id).last
+      ret = Category.where("id < " + current_category_id.to_s).last
       if ret == nil
-        ret = Category.where("id > " + current_category_id).first
+        ret = Category.where("id > " + current_category_id.to_s).first
       end
     end
     Category.destroy(current_category_id)
