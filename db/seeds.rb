@@ -1,4 +1,5 @@
 # ################################## Questions ###################################
+
 user = User.create(     email: 'ibm@ibm.com',
                         name: "IBM", 
                         password: 'password',
