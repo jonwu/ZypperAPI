@@ -1,5 +1,6 @@
 class Api::V1::SessionsController < Devise::SessionsController
   skip_before_filter :authenticate_user!, :only => [:create, :new]
+  skip_before_filter :authenticate_user_from_token!, :only => [:create, :new]
   skip_before_filter :verify_signed_out_user
   # skip_authorization_check only: [:create, :failure, :show_current_user, :options, :new]
   respond_to :json
