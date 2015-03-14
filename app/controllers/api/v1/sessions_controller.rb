@@ -42,7 +42,7 @@ class Api::V1::SessionsController < Devise::SessionsController
         if user
           user.reset_authentication_token!
           if user.save
-            render :json => { :message => 'Session deleted.' }, :success => true, :status => 204
+            render :json => { :message => 'Session deleted.' }, :success => true, :status => 200
           else
             render :json => { :message => 'User token not updated.' }, :status => 404
           end

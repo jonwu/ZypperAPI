@@ -21,8 +21,8 @@ class ApplicationController < ActionController::Base
     # timing attacks.
     if user && Devise.secure_compare(user.authentication_token, user_auth_token)
       sign_in(user, store: false)
-    else
-      invalid_authentication
+    # else
+    #   invalid_authentication
     end
   end
 
