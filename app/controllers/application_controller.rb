@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
 
   def authenticate_user_from_token!
-    user_auth_token = request.headers["X-API-TOKEN"].presence
+    user_auth_token = request.params["token"].presence
     user = User.find_by_authentication_token(user_auth_token)
 
     # Notice how we use Devise.secure_compare to compare the token
