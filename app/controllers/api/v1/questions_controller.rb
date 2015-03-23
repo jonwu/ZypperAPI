@@ -20,7 +20,7 @@ class Api::V1::QuestionsController < ApplicationController
                                 qual: true,
                                 quant: true,
                                 text: params[:text],
-                                impact: params[:impact].strip)
+                                impact: params[:impact])
     render_object(@question, 201)
     # Create responses somehow for collaborators?
   end

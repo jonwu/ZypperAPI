@@ -5,6 +5,11 @@ class Question < ActiveRecord::Base
 	has_many :comments, dependent: :destroy
 
   default_scope { order('created_at ASC') } 
+  after_initialize :init
+
+  def init
+    self.impact  ||= "normal"
+  end
 
   def self.find_next_question_and_delete(questions, current_question_id)
     ret = nil
