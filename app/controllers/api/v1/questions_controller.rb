@@ -43,6 +43,9 @@ class Api::V1::QuestionsController < ApplicationController
     questions = category.questions
     question = questions.find_by_position!(params[:start].to_i)
     question.insert_at(params[:end].to_i)
+    render_204
+    # @new_questions = category.questions
+    # render_object(@new_questions, 200)
   end
 
   def comment

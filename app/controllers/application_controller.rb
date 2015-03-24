@@ -35,8 +35,8 @@ class ApplicationController < ActionController::Base
       render json: { success: false, message: 'Invalid Query' }, status: 400
     end
 
-    def render_json_delete
-      render json: { success: true, message: 'Successful delete' }, status: 204
+    def render_204
+      render json: { success: true, message: 'No returned value' }, status: 204
     end
 
     def render_object(object, status)
