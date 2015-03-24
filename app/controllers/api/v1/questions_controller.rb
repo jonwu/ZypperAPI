@@ -38,6 +38,13 @@ class Api::V1::QuestionsController < ApplicationController
     render_object(@question, 200)
   end
 
+  def reorder
+    category = Category.find_by_id!(params[:category_id])
+    questions = category.questions
+    question = questions.find_by_position!(params[:start].to_i)
+    question.insert_at(params[:end].to_i)
+  end
+
   def comment
     
     Comment.create(text: params[:comment][:text], user_id: current_user.id, question_id: get_current_question.id)

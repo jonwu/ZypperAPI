@@ -18,7 +18,11 @@ Rails.application.routes.draw do
 
       resources :rfis, except: [:new, :edit] do
         resources :categories, shallow: true, except: [:new, :edit] do
-          resources :questions, except: [:new, :edit]
+          resources :questions, except: [:new, :edit] do
+            collection do
+              post 'reorder'
+            end
+          end
         end
       end
     end

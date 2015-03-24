@@ -28,6 +28,7 @@ gem 'spring',        group: :development
 gem 'yaml_db'
 gem 'devise'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'acts_as_list'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -1,8 +1,8 @@
 class Category < ActiveRecord::Base
-  has_many :questions, dependent: :destroy
+  has_many :questions, -> { order("position ASC") }, dependent: :destroy 
   belongs_to :rfi
 
-  default_scope { order('created_at ASC') } 
+  # default_scope { order('created_at ASC') } 
 
 
   def self.find_available_text(categories, text)

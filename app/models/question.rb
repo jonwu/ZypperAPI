@@ -4,7 +4,9 @@ class Question < ActiveRecord::Base
 	has_many :submissions, dependent: :destroy
 	has_many :comments, dependent: :destroy
 
-  default_scope { order('created_at ASC') } 
+  acts_as_list scope: :category
+
+  # default_scope { order('created_at ASC') } 
   after_initialize :init
 
   def init

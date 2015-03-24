@@ -124,6 +124,18 @@ q8 = Question.create(  category_id: category.id,
                   text: "Does this product have any known conflicts or incompatibilities with any software or hardware (including firewall products)?  If so, describe.",
                   impact: "High")
 
+q9 = Question.create(  category_id: category2.id,
+                  qual: true,
+                  quant: false,
+                  text: "Test dummy.",
+                  impact: "High")
+
+q10 = Question.create(  category_id: category2.id,
+                  qual: true,
+                  quant: false,
+                  text: "Test dummy 2",
+                  impact: "High")
+
 # Question 0 responses - for video rating - defaults to first question.
 Response.create(  question_id: q0.id,
                   user_id: user2.id,
