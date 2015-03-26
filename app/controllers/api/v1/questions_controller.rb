@@ -48,6 +48,18 @@ class Api::V1::QuestionsController < ApplicationController
     # render_object(@new_questions, 200)
   end
 
+  def insert
+    category = Category.find_by_id!(params[:category_id])
+    question = Question.create!( category_id: category.id,
+                                qual: true,
+                                quant: true,
+                                text: params[:text],
+                                impact: params[:impact])
+    questions = category.questions
+    question.insert_at(params[:end].to_i)
+    render_object(question, 200)
+  end
+
   def comment
     
     Comment.create(text: params[:comment][:text], user_id: current_user.id, question_id: get_current_question.id)
