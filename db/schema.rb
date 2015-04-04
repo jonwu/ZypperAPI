@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323225622) do
+ActiveRecord::Schema.define(version: 20150403203736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,16 @@ ActiveRecord::Schema.define(version: 20150323225622) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "components", force: true do |t|
+    t.integer  "componentable_id"
+    t.string   "componentable_type"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "title"
+  end
+
+  add_index "components", ["componentable_id", "componentable_type"], name: "index_components_on_componentable_id_and_componentable_type", using: :btree
 
   create_table "questions", force: true do |t|
     t.integer  "category_id"
@@ -94,6 +104,15 @@ ActiveRecord::Schema.define(version: 20150323225622) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "text_components", force: true do |t|
+    t.integer  "component_id"
+    t.text     "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "text_components", ["component_id"], name: "index_text_components_on_component_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

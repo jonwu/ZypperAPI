@@ -5,6 +5,9 @@ class Response < ActiveRecord::Base
   after_initialize :init
   scope :not_empty, -> {where.not(text: '')}
 
+  # components
+  has_many :components, dependent: :destroy, as: :componentable
+
   default_scope { order('created_at ASC') } 
 
   def init

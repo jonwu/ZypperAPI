@@ -22,6 +22,9 @@ Rails.application.routes.draw do
             collection do
               post 'reorder'
             end
+            member do
+              post 'add_component'
+            end
           end
         end
       end

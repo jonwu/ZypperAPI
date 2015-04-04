@@ -48,6 +48,13 @@ class Api::V1::QuestionsController < ApplicationController
     # render_object(@new_questions, 200)
   end
 
+  def add_component
+    type = params[:type]
+    question = Question.find_by_id!(params[:id])
+    @component = question.add_component(type)
+    render_object(@component, 200)
+  end
+
   def comment
     
     Comment.create(text: params[:comment][:text], user_id: current_user.id, question_id: get_current_question.id)

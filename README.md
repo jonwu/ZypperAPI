@@ -55,3 +55,6 @@ curl -X PUT -d 'text=NewQuestionName' -H "Accept: application/json" -H "X-API-TO
 
 QUESTION SHOW
 curl -X GET -H "Accept: application/json" -H "X-API-TOKEN: yzTNUTzL5rq59Xfwz8sBhXsphcgxrDDxeg" http://localhost:3000/api/questions/6
+
+QUESTION ADD COMPONENT
+curl -X POST -H "Accept: application/json" --data "token=M3QMubtP2QzKwYF92YjwkWjPQc7Crvzu4g&type=text" http://localhost:3000/api/questions/1/add_component

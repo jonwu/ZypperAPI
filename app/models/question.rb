@@ -4,6 +4,9 @@ class Question < ActiveRecord::Base
 	has_many :submissions, dependent: :destroy
 	has_many :comments, dependent: :destroy
 
+  # components
+  has_many :components, dependent: :destroy, as: :componentable
+
   acts_as_list scope: :category
 
   # default_scope { order('created_at ASC') } 
@@ -23,5 +26,9 @@ class Question < ActiveRecord::Base
     end
     Question.destroy(current_question_id)
     return ret
+  end
+
+  def add_component(type)
+    return Component.create!(title: type, componentable: self)
   end
 end
