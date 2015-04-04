@@ -53,6 +53,18 @@ class Api::V1::QuestionsController < ApplicationController
     question = Question.find_by_id!(params[:id])
     @component = question.add_component(type)
     render_object(@component, 200)
+  end 
+
+  def insert
+    category = Category.find_by_id!(params[:category_id])
+    question = Question.create!( category_id: category.id,
+                                qual: true,
+                                quant: true,
+                                text: params[:text],
+                                impact: params[:impact])
+    questions = category.questions
+    question.insert_at(params[:end].to_i)
+    render_object(question, 200)
   end
 
   def comment

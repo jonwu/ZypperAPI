@@ -21,6 +21,7 @@ Rails.application.routes.draw do
           resources :questions, except: [:new, :edit] do
             collection do
               post 'reorder'
+              post 'insert'
             end
             member do
               post 'add_component'
