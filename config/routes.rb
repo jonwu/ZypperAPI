@@ -28,9 +28,11 @@ Rails.application.routes.draw do
             end
           end
         end
+        member do
+          post 'add_vendor'
+        end
       end
     end
-
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

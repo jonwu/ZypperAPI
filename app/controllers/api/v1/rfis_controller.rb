@@ -35,4 +35,12 @@ class Api::V1::RfisController < ApplicationController
     @rfis = current_user.rfis
     render_object(@rfis.first, 200)
   end
+
+
+  def add_vendor
+    rfi = Rfi.find_by_id!(params[:id])
+    vendor_user = User.find_by_email(params[:email])
+    @vendor = Vendor.find_or_create_by(user_id: vendor_user.id, rfi_id: rfi.id)
+    render_object(@vendor, 200)
+  end
 end
